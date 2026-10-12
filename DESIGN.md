@@ -40,3 +40,14 @@ Vermilion hanya muncul di momen kunci (lentera, titik sosok manusia, CTA).
 - Tanpa statistik palsu, testimoni, badge, logo bar, pricing, FAQ template.
 - Konten = kanon fiksi dari poster. Semua klaim visual merujuk ke apa yang terlihat.
 - Copy bahasa Indonesia, tanpa em dash, tanpa buzzword.
+
+## Stack (v2 — scaled up)
+- **Astro 5** (static output) + **Tailwind CSS 4** via `@tailwindcss/vite`.
+  Design tokens di `@theme` dalam `src/styles/global.css`.
+- **GSAP + ScrollTrigger**: parallax kabut (`data-parallax`) + drift judul hero;
+  dinonaktifkan saat `prefers-reduced-motion`.
+- **Web Audio API** (`src/lib/soundscape.ts`): soundscape angin + kail kuningan +
+  gong kembar, semuanya disintesis (tanpa file audio).
+- Struktur: `src/layouts/Base.astro`, 7 komponen di `src/components/`,
+  halaman `src/pages/index.astro`. Aset poster di `public/assets/`.
+- Deploy: push ke `main` → Vercel auto-build (framework Astro terdeteksi otomatis).

@@ -1,0 +1,102 @@
+---
+const steps = [
+  { n: '01', title: 'Kaki Kabut', body: 'Berangkat sebelum fajar dari gerbang bambu. Kabut masih tidur di sawah; langkahmu tidak boleh membangunkannya.' },
+  { n: '02', title: 'Hutan Kail', body: 'Jangan menoleh pada bunyi kuningan. Itu bukan angin. Teruslah berjalan sampai bunyi itu berhenti sendiri.' },
+  { n: '03', title: 'Tebing Dua Sosok', body: 'Di sini para saksi berdiri. Pakai sesuatu yang merah — ia hanya menemui mereka yang berani terlihat.' },
+  { n: '04', title: 'Altar Lentera', body: 'Satu lentera vermilion dinyalakan. Kalau malam itu kabut bergerak, doanya sudah sampai.' }
+];
+---
+<section class="pilgrimage" aria-label="Jalan ziarah">
+  <div class="pilgrimage__inner">
+    <div class="section-head">
+      <h2 data-reveal>Jalan <em>ziarah</em></h2>
+      <p data-reveal style="--reveal-delay:.1s">Empat tahap menuju tebing penglihatan. Tidak boleh diubah urutannya.</p>
+      <p class="pilgrimage__cue" id="ziarahCue" aria-hidden="true">Geser untuk tahap berikutnya</p>
+    </div>
+    <div class="pilgrimage__trackwrap">
+      <div class="pilgrimage__track" id="ziarahTrack" tabindex="0" aria-label="Empat tahap ziarah, geser ke samping">
+        {steps.map((s, i) => (
+          <div class:list={["step", { "step--final": i === steps.length - 1 }]} data-reveal style={`--reveal-delay:${i * 0.08}s`}>
+            <span class="step__num">{s.n}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pilgrimage{
+    background:var(--color-stone);
+    clip-path:var(--cliff);
+    padding:calc(var(--section-pad) + 5vw) 0 calc(var(--section-pad) + 7vw);
+    margin-top:-2px;
+  }
+  .pilgrimage__inner{ max-width:var(--content); margin-inline:auto; padding-inline:var(--gutter) }
+  .section-head{ margin-bottom:clamp(2rem,5vh,3.5rem); max-width:30rem }
+  .section-head h2{
+    font-family:var(--font-display); font-weight:300;
+    font-size:clamp(2.6rem, 6.5vw, 5.6rem); line-height:1.02; letter-spacing:-0.01em;
+  }
+  .section-head h2 em{ font-style:italic; color:var(--color-sage) }
+  .section-head p{ margin-top:1.2rem; color:var(--color-ink-dim) }
+
+  .pilgrimage__trackwrap{ position:relative }
+  .pilgrimage__trackwrap::before{
+    content:none; position:absolute; top:0; bottom:1.5rem; left:0;
+    width:clamp(1.5rem,4vw,3.5rem); z-index:1; pointer-events:none;
+    background:linear-gradient(90deg, var(--color-stone), transparent);
+  }
+  .pilgrimage__trackwrap.is-scrolled::before{ content:"" }
+  .pilgrimage__trackwrap.can-more .pilgrimage__track{
+    -webkit-mask-image:linear-gradient(90deg, #000 calc(100% - 3.5rem), transparent 100%);
+            mask-image:linear-gradient(90deg, #000 calc(100% - 3.5rem), transparent 100%);
+  }
+  .pilgrimage__trackwrap.is-scrolled .pilgrimage__track{
+    -webkit-mask-image:none; mask-image:none;
+  }
+  .pilgrimage__track{
+    display:grid; grid-auto-flow:column;
+    grid-auto-columns:min(64vw, 17rem);
+    gap:clamp(1.5rem,3vw,3rem);
+    overflow-x:auto;
+    padding:1rem 0 2rem;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:1px;
+    scrollbar-width:thin; scrollbar-color:var(--color-moss-dim) transparent;
+  }
+  .pilgrimage__track::-webkit-scrollbar{ height:6px }
+  .pilgrimage__track::-webkit-scrollbar-thumb{ background:var(--color-moss-dim) }
+  .pilgrimage__cue{
+    display:flex; align-items:center; gap:.7rem;
+    margin:1.4rem 0 0;
+    font-size:.8rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--color-ink-dim); opacity:.85;
+  }
+  .pilgrimage__cue::after{
+    content:""; width:22px; height:10px;
+    border-right:1.5px solid var(--color-ink-dim); border-top:1.5px solid var(--color-ink-dim);
+    transform:skewX(24deg);
+  }
+  .pilgrimage__cue[hidden]{ display:none }
+
+  .step{
+    scroll-snap-align:start;
+    border-top:2px solid var(--color-moss-dim);
+    padding-top:1.6rem;
+  }
+  .step--final{ border-top-color:var(--color-vermilion) }
+  .step__num{
+    font-family:var(--font-display); font-style:italic;
+    font-size:3rem; line-height:1; color:var(--color-moss);
+    display:block;
+  }
+  .step--final .step__num{ color:var(--color-vermilion-hi) }
+  .step h3{
+    font-family:var(--font-display); font-weight:400;
+    font-size:1.5rem; margin:1rem 0 .7rem;
+  }
+  .step p{ font-size:.98rem; color:var(--color-ink-dim) }
+</style>

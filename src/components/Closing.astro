@@ -1,0 +1,43 @@
+---
+---
+<section class="closing relative min-h-[100svh] flex flex-col items-center justify-center text-center overflow-clip">
+  <div class="closing__mist absolute inset-0 -z-10 will-change-transform" data-parallax="-0.12" aria-hidden="true"></div>
+  <figure class="closing__figure relative" style="padding:var(--section-pad) var(--gutter)">
+    <blockquote class="closing__quote" data-reveal>Mintalah <span class="mark">satu</span> saja.</blockquote>
+    <figcaption class="closing__cap" data-reveal style="--reveal-delay:.15s">Minta dua, dan kabut tidak akan bergerak.</figcaption>
+  </figure>
+  <footer class="closing__foot flex flex-wrap items-center justify-center gap-x-12 gap-y-4" data-reveal style="--reveal-delay:.25s">
+    <span>Catatan Tebing &copy; generasi kesembilan</span>
+    <span aria-hidden="true">&middot;</span>
+    <a href="#top">Kembali ke kabut</a>
+  </footer>
+</section>
+
+<style>
+  .closing__mist{
+    background-image:url("/assets/mist-band.jpg");
+    background-size:cover; background-position:center 30%;
+    opacity:.28;
+    -webkit-mask-image:linear-gradient(transparent, rgba(0,0,0,.6) 45%, #000);
+            mask-image:linear-gradient(transparent, rgba(0,0,0,.6) 45%, #000);
+  }
+  .closing__quote{
+    font-family:var(--font-display); font-weight:300;
+    font-size:clamp(2.6rem, 8vw, 7rem);
+    line-height:1.04; letter-spacing:-0.01em;
+    max-width:14ch; margin-inline:auto;
+  }
+  .closing__quote .mark{ font-style:italic; color:var(--color-vermilion-hi) }
+  .closing__cap{
+    margin-top:2rem; color:var(--color-ink-dim);
+    font-size:clamp(1rem, 1.5vw, 1.2rem);
+  }
+  .closing__foot{
+    position:absolute; bottom:0; left:0; right:0;
+    padding:2rem var(--gutter);
+    font-size:.82rem; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--color-ink-dim);
+  }
+  .closing__foot a{ color:var(--color-vermilion-hi); text-decoration:none }
+  .closing__foot a:hover{ text-decoration:underline; text-underline-offset:4px }
+</style>

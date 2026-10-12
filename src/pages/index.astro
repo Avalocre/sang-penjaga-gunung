@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import Opening from '../components/Opening.astro';
+import Manifesto from '../components/Manifesto.astro';
+import Relics from '../components/Relics.astro';
+import Pilgrimage from '../components/Pilgrimage.astro';
+import Season from '../components/Season.astro';
+import Voice from '../components/Voice.astro';
+import Closing from '../components/Closing.astro';
+---
+<Base>
+  <main id="top">
+    <Opening />
+    <Manifesto />
+    <Relics />
+    <Pilgrimage />
+    <Season />
+    <Voice />
+    <Closing />
+  </main>
+
+  <script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger);
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // reveal
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      }
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    if (!reduced) {
+      // parallax mist layers
+      document.querySelectorAll('[data-parallax]').forEach((el) => {
+        const speed = parseFloat((el as HTMLElement).dataset.parallax || '0.2');
+        gsap.to(el, {
+          yPercent: speed * 100,
+          ease: 'none',
+          scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1.2 }
+        });
+      });
+
+      // hero title drifts apart on scroll
+      gsap.to('.opening__title', {
+        yPercent: -18, opacity: 0.25, ease: 'none',
+        scrollTrigger: { trigger: '.opening', start: 'top top', end: 'bottom top', scrub: 1 }
+      });
+    }
+
+    // pilgrimage horizontal cue
+    const track = document.getElementById('ziarahTrack');
+    const cue = document.getElementById('ziarahCue');
+    const wrap = track?.parentElement;
+    if (track && wrap) {
+      const update = () => {
+        wrap.classList.toggle('can-more', track.scrollWidth > track.clientWidth + 24 && track.scrollLeft < 24);
+        wrap.classList.toggle('is-scrolled', track.scrollLeft > 24);
+        if (cue && track.scrollLeft > 24) cue.setAttribute('hidden', '');
+      };
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    }
+  </script>
+</Base>

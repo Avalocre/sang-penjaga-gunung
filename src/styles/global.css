@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Spectral", "Georgia", serif;
+
+  --color-abyss: #0d1412;
+  --color-stone: #15201c;
+  --color-moss: #2e4a3f;
+  --color-moss-dim: #1d2f28;
+  --color-sage: #7fa98f;
+  --color-mist: #c9cfd0;
+  --color-slate: #8fa3ad;
+  --color-vermilion: #c8442c;
+  --color-vermilion-deep: #a03a2e;
+  --color-vermilion-hi: #e05a3f;
+  --color-bronze: #b08d4a;
+  --color-ink: #e8ebe7;
+  --color-ink-dim: #9aa8a0;
+
+  --animate-hint-dip: hint-dip 2.8s ease-in-out infinite;
+}
+
+:root{
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --content: 74rem;
+  --section-pad: clamp(6rem, 15vh, 11rem);
+  --cliff: polygon(0 0, 100% 2.8vw, 100% 100%, 0 calc(100% - 2.8vw));
+  --cliff-r: polygon(0 2.8vw, 100% 0, 100% calc(100% - 2.8vw), 0 100%);
+}
+
+html{ scroll-behavior:smooth }
+body{
+  background: var(--color-abyss);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.72;
+  overflow-x: clip;
+}
+::selection{ background: var(--color-vermilion); color: var(--color-ink) }
+
+[data-reveal]{
+  opacity:0; transform:translateY(1.6rem);
+  transition:opacity 1s cubic-bezier(.22,.8,.24,1), transform 1s cubic-bezier(.22,.8,.24,1);
+  transition-delay:var(--reveal-delay, 0s);
+}
+[data-reveal].is-in{ opacity:1 !important; transform:none !important }
+
+:focus-visible{ outline:2px solid var(--color-vermilion-hi); outline-offset:3px }
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto }
+  [data-reveal]{ opacity:1; transform:none; transition:none }
+}
