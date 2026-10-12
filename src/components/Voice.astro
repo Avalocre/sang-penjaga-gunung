@@ -1,21 +1,22 @@
 ---
 ---
-<section class="voice" aria-label="Suara gunung">
+<section class="voice" aria-label="Musik dan suara film">
   <div class="voice__inner">
     <div class="section-head">
-      <h2 data-reveal>Suara <em>gunung</em></h2>
-      <p data-reveal style="--reveal-delay:.1s">Rekaman angin, kail kuningan, dan satu dentuman gong — didengar sebaiknya dengan mata terpejam.</p>
+      <p class="kicker" data-reveal>Tata suara</p>
+      <h2 data-reveal>Musik <em>gunung</em></h2>
+      <p data-reveal style="--reveal-delay:.1s">Skor film ini tidak memakai orkestra penuh. Hanya angin, kail kuningan, dan gong kembar yang direkam di ketinggian 3.000 meter. Ini pratinjaunya.</p>
     </div>
 
     <div class="soundscape" data-reveal>
       <button id="soundToggle" class="sound-toggle" type="button" aria-pressed="false">
         <span class="sound-toggle__orb" aria-hidden="true"></span>
-        <span class="sound-toggle__label">Nyalakan suara</span>
+        <span class="sound-toggle__label">Putar pratinjau skor</span>
       </button>
       <div class="sound-bars" id="soundBars" aria-hidden="true">
         <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
       </div>
-      <p class="soundscape__note" id="soundNote">Sintesis Web Audio — tidak ada rekaman asli; gunung tidak pernah mau direkam.</p>
+      <p class="soundscape__note" id="soundNote">Sintesis Web Audio, tanpa satu pun file rekaman. Di bioskop, dentuman gong-nya akan jauh lebih dalam.</p>
     </div>
   </div>
 </section>
@@ -30,7 +31,7 @@
     on = !on;
     btn.setAttribute('aria-pressed', String(on));
     bars?.classList.toggle('is-live', on);
-    if (label) label.textContent = on ? 'Matikan suara' : 'Nyalakan suara';
+    if (label) label.textContent = on ? 'Hentikan pratinjau' : 'Putar pratinjau skor';
     if (on) await startSoundscape(); else stopSoundscape();
   });
 </script>
@@ -42,13 +43,17 @@
     margin-top:-2px;
   }
   .voice__inner{ max-width:var(--content); margin-inline:auto }
-  .section-head{ margin-bottom:clamp(2rem,5vh,3.5rem); max-width:34rem }
+  .kicker{
+    font-size:.8rem; letter-spacing:.32em; text-transform:uppercase;
+    color:var(--color-bronze); margin-bottom:1.4rem;
+  }
+  .section-head{ margin-bottom:clamp(2rem,5vh,3.5rem); max-width:40rem }
   .section-head h2{
     font-family:var(--font-display); font-weight:300;
     font-size:clamp(2.6rem, 6.5vw, 5.6rem); line-height:1.02; letter-spacing:-0.01em;
   }
   .section-head h2 em{ font-style:italic; color:var(--color-sage) }
-  .section-head p{ margin-top:1.2rem; color:var(--color-ink-dim) }
+  .section-head p:not(.kicker){ margin-top:1.2rem; color:var(--color-ink-dim) }
 
   .soundscape{
     display:flex; flex-wrap:wrap; align-items:center; gap:2rem 2.5rem;

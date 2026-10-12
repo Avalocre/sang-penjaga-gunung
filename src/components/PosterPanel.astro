@@ -1,0 +1,100 @@
+---
+---
+<section class="poster" aria-label="Poster resmi dan sinopsis">
+  <div class="poster__grid">
+    <figure class="poster__fig" data-reveal>
+      <div class="poster__frame">
+        <img src="/assets/vista-mountain.jpg" alt="Poster teaser Sang Penjaga Gunung: puncak gunung kuno di atas lautan awan, matahari terbit di balik puncaknya" loading="lazy" decoding="async">
+        <div class="poster__titles" aria-hidden="true">
+          <span class="poster__small">Sebuah film</span>
+          <span class="poster__name">Sang<br>Penjaga<br>Gunung</span>
+          <span class="poster__soon">Segera</span>
+        </div>
+      </div>
+      <figcaption>Poster teaser resmi, edisi pertama</figcaption>
+    </figure>
+
+    <div class="poster__body">
+      <h2 data-reveal>Gunung itu <em>terbangun</em></h2>
+      <div class="poster__syn" data-reveal style="--reveal-delay:.1s">
+        <p>Di lembah yang tidak pernah melihat langit penuh, para tetua menjaga satu kepercayaan: gunung di utara adalah arca yang tidur, dan kabut adalah napasnya. Pagi itu kabut berhenti turun. Peti mati para leluhur berdenting. Dan di puncak yang selalu tertutup, sebuah mata terbuka.</p>
+        <p>Rara, penjaga lentera yang takut ketinggian, dan Bima, pengukur jalan yang tidak percaya dongeng, adalah dua orang terakhir yang melihat gunung itu bergerak. Satu-satunya cara membuktikan apa yang mereka lihat adalah berjalan ke atas, ke tempat kabut bermula.</p>
+      </div>
+      <ul class="poster__facts" data-reveal style="--reveal-delay:.2s">
+        <li><span>Genre</span><span>Fantasi &middot; Misteri</span></li>
+        <li><span>Durasi</span><span>2 jam 19 menit</span></li>
+        <li><span>Bahasa</span><span>Indonesia</span></li>
+        <li><span>Format</span><span>2.39 : 1 anamorphic</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .poster{
+    padding:var(--section-pad) var(--gutter);
+    max-width:var(--content); margin-inline:auto;
+  }
+  .poster__grid{
+    display:grid; gap:clamp(2.5rem,6vw,5rem); align-items:start;
+  }
+  @media (min-width:56rem){
+    .poster__grid{ grid-template-columns:5fr 6fr }
+  }
+  .poster__fig{ margin:0 }
+  .poster__frame{
+    position:relative; overflow:hidden;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.75), inset 0 0 0 1px rgba(201,207,208,.1);
+  }
+  .poster__frame img{
+    width:100%; aspect-ratio:853/1280; object-fit:cover; display:block;
+    filter:saturate(.92) brightness(.9) contrast(1.04);
+    transform:scale(1.02);
+    transition:transform 1s cubic-bezier(.22,.8,.24,1);
+  }
+  .poster__frame:hover img{ transform:scale(1.06) }
+  .poster__titles{
+    position:absolute; inset:auto 0 0 0;
+    padding:2rem 1.6rem 1.8rem;
+    background:linear-gradient(transparent, rgba(13,20,18,.88) 45%);
+    display:flex; flex-direction:column; align-items:flex-start; gap:.35rem;
+  }
+  .poster__small{
+    font-size:.68rem; letter-spacing:.34em; text-transform:uppercase; color:var(--color-sage);
+  }
+  .poster__name{
+    font-family:var(--font-display); font-weight:600; text-transform:uppercase;
+    font-size:clamp(1.6rem, 3.4vw, 2.5rem); line-height:1.02; letter-spacing:.02em;
+    color:var(--color-ink);
+  }
+  .poster__soon{
+    margin-top:.6rem; font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--color-vermilion-hi);
+  }
+  .poster__fig figcaption{
+    margin-top:1rem; font-size:.85rem; letter-spacing:.14em; color:var(--color-ink-dim);
+  }
+  .poster__body h2{
+    font-family:var(--font-display); font-weight:300;
+    font-size:clamp(2.4rem, 5.5vw, 4.6rem); line-height:1.04; letter-spacing:-0.01em;
+    margin-bottom:2rem;
+  }
+  .poster__body h2 em{ font-style:italic; color:var(--color-sage) }
+  .poster__syn p{ color:var(--color-ink-dim); max-width:56ch }
+  .poster__syn p + p{ margin-top:1.4rem }
+  .poster__facts{
+    list-style:none; padding:0; margin:2.6rem 0 0;
+    border-top:1px solid var(--color-moss-dim);
+  }
+  .poster__facts li{
+    display:flex; justify-content:space-between; gap:2rem;
+    padding:.9rem 0;
+    border-bottom:1px solid var(--color-moss-dim);
+    font-size:.95rem;
+  }
+  .poster__facts li span:first-child{
+    letter-spacing:.18em; text-transform:uppercase; font-size:.78rem;
+    color:var(--color-ink-dim); padding-top:.2em;
+  }
+  .poster__facts li span:last-child{ font-family:var(--font-display); font-style:italic; font-size:1.1rem }
+</style>

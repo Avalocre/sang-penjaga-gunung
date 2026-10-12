@@ -1,0 +1,154 @@
+---
+const frames = [
+  {
+    img: '/assets/still-guardian-face.jpg',
+    alt: 'Wajah raksasa arca kuno menyatu dengan gunung, satu mata menyala keemasan di balik kabut',
+    cap: 'Ia membuka mata untuk pertama kalinya dalam seribu tahun'
+  },
+  {
+    img: '/assets/env-bamboo-gate.jpg',
+    alt: 'Gerbang kayu tua berlumut dengan deretan lonceng kuningan, tangga batu menghilang ke dalam kabut',
+    cap: 'Gerbang bambu, jam biru. Lonceng-lonceng itu belum pernah berbunyi sekeras malam itu'
+  },
+  {
+    img: '/assets/env-altar-night.jpg',
+    alt: 'Altar batu di tepi tebing malam hari, lentera-lentera merah menyala, pilar batu raksasa menjulang di balik lautan awan',
+    cap: 'Altar lentera, di atas lautan awan'
+  },
+  {
+    img: '/assets/still-gong.jpg',
+    alt: 'Dua gong perunggu besar berukir naga tergantung di kuil gunung, asap dupa mengepul, pita merah berkibar',
+    cap: 'Gong kembar: satu dentuman berarti berpindah, dua berarti berhenti'
+  },
+  {
+    img: '/assets/still-hand-treetops.jpg',
+    alt: 'Tangan batu raksasa berlumut turun dari awan menyentuh pucuk-pucuk pinus, burung-burung beterbangan',
+    cap: 'Tangan yang tidak pernah mencakar, hanya memeriksa apakah hutan masih tumbuh'
+  }
+];
+---
+<section class="frames" id="cuplikan" aria-label="Cuplikan film">
+  <div class="frames__inner">
+    <div class="section-head">
+      <p class="kicker" data-reveal>Galeri</p>
+      <h2 data-reveal>Cuplikan <em>film</em></h2>
+      <p data-reveal style="--reveal-delay:.1s">Lima bingkai dari 2 jam 19 menit. Sisanya disimpan untuk layar besar.</p>
+    </div>
+
+    <div class="frames__featured" data-reveal>
+      <img src={frames[0].img} alt={frames[0].alt} loading="lazy" decoding="async">
+      <p>{frames[0].cap}</p>
+    </div>
+
+    <div class="frames__grid">
+      {frames.slice(1).map((f, i) => (
+        <figure data-reveal style={`--reveal-delay:${i * 0.07}s`}>
+          <img src={f.img} alt={f.alt} loading="lazy" decoding="async">
+          <figcaption>{f.cap}</figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <details class="concept" data-reveal>
+      <summary>Seni konsep awal <span aria-hidden="true">&darr;</span></summary>
+      <div class="concept__grid">
+        <figure>
+          <img src="/assets/hero.jpg" alt="Seni konsep awal: penjaga gunung bertongkat gong kembar di atas lautan awan" loading="lazy" decoding="async">
+          <figcaption>Konsep pertama: sang Penjaga sebagai pengelana bertongkat</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/relic-staff.jpg" alt="Seni konsep awal: tongkat gong kembar dengan asap dupa" loading="lazy" decoding="async">
+          <figcaption>Studi pusaka: gong kembar</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/relic-ornaments.jpg" alt="Seni konsep awal: perhiasan perunggu berkarat" loading="lazy" decoding="async">
+          <figcaption>Studi pusaka: kail-kail kuningan</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/figures-cliff.jpg" alt="Seni konsep awal: dua sosok kecil di tepi tebing" loading="lazy" decoding="async">
+          <figcaption>Studi skala: dua sosok di tebing</figcaption>
+        </figure>
+      </div>
+    </details>
+  </div>
+</section>
+
+<style>
+  .frames{
+    padding:var(--section-pad) var(--gutter);
+    max-width:var(--content); margin-inline:auto;
+  }
+  .kicker{
+    font-size:.8rem; letter-spacing:.32em; text-transform:uppercase;
+    color:var(--color-bronze); margin-bottom:1.4rem;
+  }
+  .section-head{ margin-bottom:clamp(2.5rem,6vh,4rem); max-width:34rem }
+  .section-head h2{
+    font-family:var(--font-display); font-weight:300;
+    font-size:clamp(2.6rem, 6.5vw, 5.6rem); line-height:1.02; letter-spacing:-0.01em;
+  }
+  .section-head h2 em{ font-style:italic; color:var(--color-sage) }
+  .section-head p:not(.kicker){ margin-top:1.2rem; color:var(--color-ink-dim) }
+
+  .frames__featured{
+    position:relative; overflow:hidden; margin-bottom:clamp(2rem,4vh,3rem);
+  }
+  .frames__featured img{
+    width:100%; aspect-ratio:21/9; object-fit:cover; object-position:center 42%;
+    filter:saturate(.95) brightness(.9) contrast(1.05); display:block;
+  }
+  .frames__featured::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(13,20,18,.7), transparent 32%);
+    box-shadow:inset 0 0 0 1px rgba(201,207,208,.08);
+  }
+  .frames__featured p{
+    position:absolute; left:1.4rem; bottom:1.2rem; z-index:1; max-width:34ch;
+    font-family:var(--font-display); font-style:italic;
+    font-size:clamp(1rem, 1.8vw, 1.35rem); color:var(--color-mist);
+  }
+  .frames__grid{
+    display:grid; gap:clamp(1.2rem,2.5vw,2rem);
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  }
+  .frames__grid figure{
+    margin:0; position:relative; overflow:hidden;
+  }
+  .frames__grid img{
+    width:100%; aspect-ratio:16/10; object-fit:cover; display:block;
+    filter:saturate(.92) brightness(.88) contrast(1.05);
+    transform:scale(1.01);
+    transition:transform .9s cubic-bezier(.22,.8,.24,1);
+  }
+  .frames__grid figure:hover img{ transform:scale(1.06) }
+  .frames__grid figcaption{
+    padding:1rem 0 0; font-size:.85rem; color:var(--color-ink-dim);
+  }
+
+  .concept{
+    margin-top:clamp(3rem,7vh,5rem);
+    border-top:1px solid var(--color-moss-dim); padding-top:1.6rem;
+  }
+  .concept summary{
+    cursor:pointer; list-style:none;
+    font-size:.85rem; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--color-ink-dim);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .concept summary::-webkit-details-marker{ display:none }
+  .concept summary:hover{ color:var(--color-mist) }
+  .concept[open] summary span{ transform:rotate(180deg) }
+  .concept summary span{ display:inline-block; transition:transform .4s }
+  .concept__grid{
+    margin-top:2rem;
+    display:grid; gap:clamp(1.2rem,2.5vw,2rem);
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+  .concept__grid figure{ margin:0; opacity:.75; transition:opacity .5s }
+  .concept__grid figure:hover{ opacity:1 }
+  .concept__grid img{
+    width:100%; aspect-ratio:1/1.1; object-fit:cover; display:block;
+    filter:saturate(.85) brightness(.82) contrast(1.05);
+  }
+  .concept__grid figcaption{ padding:.8rem 0 0; font-size:.8rem; color:var(--color-ink-dim) }
+</style>

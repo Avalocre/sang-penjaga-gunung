@@ -1,0 +1,86 @@
+---
+---
+<section class="hero relative min-h-[100svh] overflow-clip">
+  <div class="hero__art absolute inset-0 will-change-transform" data-parallax="0.18" aria-hidden="true">
+    <img src="/assets/keyart-hero.jpg" alt="" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero__scrim absolute inset-0" aria-hidden="true"></div>
+
+  <div class="hero__content relative flex min-h-[100svh] flex-col justify-end" style="padding:0 var(--gutter) clamp(4.5rem,12vh,8rem)">
+    <p class="hero__eyebrow" data-reveal><span class="text-vermilion mr-[0.6em]" aria-hidden="true">&#9679;</span>Sebuah film panjang</p>
+    <h1 class="hero__title" data-reveal style="--reveal-delay:.1s">Sang Penjaga <em>Gunung</em></h1>
+    <p class="hero__tagline" data-reveal style="--reveal-delay:.2s">Seribu tahun ia diam.<br><em class="text-mist">Malam ini ia berjalan.</em></p>
+    <div class="hero__meta" data-reveal style="--reveal-delay:.3s">
+      <a class="hero__cta" href="#cuplikan">Lihat cuplikan</a>
+      <span>Segera di bioskop</span>
+      <span aria-hidden="true">&middot;</span>
+      <span>2 jam 19 menit</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint absolute bottom-0 flex flex-col items-center gap-4 text-mist" style="right:var(--gutter)" aria-hidden="true">
+    <span class="[writing-mode:vertical-rl] text-[0.75rem] tracking-[0.3em] uppercase">Gulir</span>
+  </div>
+</section>
+
+<style>
+  .hero__art img{
+    width:100%; height:112%; object-fit:cover; object-position:center 68%;
+  }
+  .hero__scrim{
+    background:
+      linear-gradient(to top, rgba(13,20,18,.94) 0%, rgba(13,20,18,.45) 30%, transparent 58%),
+      linear-gradient(100deg, rgba(13,20,18,.55) 0%, transparent 55%);
+  }
+  .hero__eyebrow{
+    font-size:.8rem; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--color-sage); margin-bottom:1.4rem;
+  }
+  .hero__title{
+    font-family:var(--font-display); font-weight:300;
+    font-size:clamp(2.9rem, 10.5vw, 8.5rem);
+    line-height:.98; letter-spacing:-0.015em;
+    max-width:12ch;
+    text-shadow:0 2px 40px rgba(13,20,18,.8);
+  }
+  .hero__title em{ font-style:italic; color:var(--color-mist) }
+  .hero__tagline{
+    margin-top:1.6rem; max-width:34ch;
+    font-size:clamp(1.05rem, 1rem + 0.5vw, 1.35rem);
+    color:var(--color-ink-dim);
+  }
+  .hero__meta{
+    margin-top:2.4rem; display:flex; gap:1.1rem; flex-wrap:wrap; align-items:center;
+    font-size:.85rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--color-mist);
+  }
+  .hero__cta{
+    display:inline-flex; align-items:center; gap:.6rem;
+    padding:.75rem 1.4rem;
+    border:1px solid var(--color-vermilion);
+    color:var(--color-ink); text-decoration:none;
+    background:rgba(200,68,44,.14);
+    transition:background .4s, border-color .4s;
+  }
+  .hero__cta::after{ content:"\2192"; font-size:1em }
+  .hero__cta:hover{ background:var(--color-vermilion); border-color:var(--color-vermilion) }
+  .scroll-hint{ padding-bottom:max(1.25rem, env(safe-area-inset-bottom)) }
+  .scroll-hint::before{
+    content:""; width:1px; height:4.5rem;
+    background:linear-gradient(transparent, var(--color-mist));
+  }
+  .scroll-hint::after{
+    content:""; width:9px; height:9px;
+    border-right:1.5px solid var(--color-mist); border-bottom:1.5px solid var(--color-mist);
+    transform:rotate(45deg);
+    animation:hint-dip 2.8s ease-in-out infinite;
+  }
+  @keyframes hint-dip{
+    0%,100%{ transform:rotate(45deg) translate(0,0) }
+    50%{ transform:rotate(45deg) translate(4px,4px) }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .scroll-hint::after{ animation:none }
+    .hero__art{ transform:none !important }
+  }
+</style>

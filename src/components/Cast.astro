@@ -1,0 +1,102 @@
+---
+const cast = [
+  {
+    name: 'Rara', role: 'penjaga lentera',
+    desc: 'Ia mewarisi lentera terakhir dari ibunya, dan satu ketakutan: ketinggian. Malam gunung itu terbangun, lenteranya menyala sendiri, mengarah ke atas.',
+    quote: 'Kabut tidak pernah berbohong. Kita saja yang jarang mendengarkan.'
+  },
+  {
+    name: 'Bima', role: 'pengukur jalan',
+    desc: 'Peta buatannya membuktikan gunung itu berpindah sebelas depa dalam semalam. Ia tidak percaya dongeng, sampai dongeng itu berjalan melewati halamannya.',
+    quote: 'Aku tidak naik untuk membuktikan ia ada. Aku naik untuk membuktikan ia pergi.'
+  },
+  {
+    name: 'Gunung', role: 'sang Penjaga',
+    desc: 'Arca kuno yang diukir dari satu puncak utuh. Tidak pernah berbicara. Hanya terdengar satu dentuman ketika ia berpindah, dua ketika ia berhenti.',
+    quote: '( tidak ada dialog. hanya langkah. )'
+  }
+];
+---
+<section class="cast" aria-label="Para pemeran">
+  <div class="cast__inner">
+    <div class="section-head">
+      <p class="kicker" data-reveal>Karakter</p>
+      <h2 data-reveal>Para <em>saksi</em></h2>
+      <p data-reveal style="--reveal-delay:.1s">Dua manusia dan satu yang tidak pernah bisa dipanggil namanya.</p>
+    </div>
+    <figure class="cast__still" data-reveal>
+      <img src="/assets/still-witnesses.jpg" alt="Cuplikan film: Rara berjubah merah dan Bima bertongkat berdiri di tepi tebing berlumut, menatap lautan awan dan puncak gunung di kejauhan" loading="lazy" decoding="async">
+      <figcaption>Cuplikan: Rara dan Bima di Tebing Dua Sosok</figcaption>
+    </figure>
+    <div class="cast__grid">
+      {cast.map((c, i) => (
+        <article class="cast__card" data-reveal style={`--reveal-delay:${i * 0.08}s`}>
+          <h3>{c.name}</h3>
+          <p class="cast__role">{c.role}</p>
+          <p class="cast__desc">{c.desc}</p>
+          <blockquote>{c.quote}</blockquote>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cast{
+    background:var(--color-stone);
+    clip-path:var(--cliff);
+    padding:calc(var(--section-pad) + 4vw) var(--gutter) calc(var(--section-pad) + 6vw);
+    margin-top:-2px;
+  }
+  .cast__inner{ max-width:var(--content); margin-inline:auto }
+  .kicker{
+    font-size:.8rem; letter-spacing:.32em; text-transform:uppercase;
+    color:var(--color-bronze); margin-bottom:1.4rem;
+  }
+  .section-head{ margin-bottom:clamp(2.5rem,6vh,4rem); max-width:34rem }
+  .section-head h2{
+    font-family:var(--font-display); font-weight:300;
+    font-size:clamp(2.6rem, 6.5vw, 5.6rem); line-height:1.02; letter-spacing:-0.01em;
+  }
+  .section-head h2 em{ font-style:italic; color:var(--color-sage) }
+  .section-head p:not(.kicker){ margin-top:1.2rem; color:var(--color-ink-dim) }
+
+  .cast__still{
+    margin:0 0 clamp(3rem,7vh,5rem); position:relative; overflow:hidden;
+  }
+  .cast__still img{
+    width:100%; aspect-ratio:21/9; object-fit:cover; object-position:center 30%;
+    filter:saturate(.92) brightness(.88) contrast(1.05); display:block;
+  }
+  .cast__still::after{
+    content:""; position:absolute; inset:0;
+    box-shadow:inset 0 0 0 1px rgba(201,207,208,.08);
+    background:linear-gradient(to top, rgba(13,20,18,.55), transparent 30%);
+  }
+  .cast__still figcaption{
+    position:absolute; left:1.4rem; bottom:1.1rem; z-index:1;
+    font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--color-mist);
+  }
+  .cast__grid{
+    display:grid; gap:clamp(1.5rem,3vw,2.5rem);
+  }
+  @media (min-width:52rem){ .cast__grid{ grid-template-columns:repeat(3, 1fr) } }
+  .cast__card{
+    border-top:2px solid var(--color-moss-dim); padding-top:1.5rem;
+  }
+  .cast__card:last-child{ border-top-color:var(--color-vermilion) }
+  .cast__card h3{
+    font-family:var(--font-display); font-weight:400; font-size:1.7rem; line-height:1.1;
+  }
+  .cast__role{
+    margin:.4rem 0 1rem; font-size:.8rem; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--color-bronze);
+  }
+  .cast__desc{ font-size:.98rem; color:var(--color-ink-dim) }
+  .cast__card blockquote{
+    margin:1.4rem 0 0; padding-left:1.1rem;
+    border-left:1px solid var(--color-vermilion);
+    font-family:var(--font-display); font-style:italic;
+    font-size:1.05rem; color:var(--color-mist); line-height:1.5;
+  }
+</style>

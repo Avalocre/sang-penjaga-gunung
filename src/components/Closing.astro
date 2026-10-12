@@ -1,43 +1,104 @@
 ---
 ---
 <section class="closing relative min-h-[100svh] flex flex-col items-center justify-center text-center overflow-clip">
-  <div class="closing__mist absolute inset-0 -z-10 will-change-transform" data-parallax="-0.12" aria-hidden="true"></div>
-  <figure class="closing__figure relative" style="padding:var(--section-pad) var(--gutter)">
-    <blockquote class="closing__quote" data-reveal>Mintalah <span class="mark">satu</span> saja.</blockquote>
-    <figcaption class="closing__cap" data-reveal style="--reveal-delay:.15s">Minta dua, dan kabut tidak akan bergerak.</figcaption>
-  </figure>
-  <footer class="closing__foot flex flex-wrap items-center justify-center gap-x-12 gap-y-4" data-reveal style="--reveal-delay:.25s">
-    <span>Catatan Tebing &copy; generasi kesembilan</span>
-    <span aria-hidden="true">&middot;</span>
-    <a href="#top">Kembali ke kabut</a>
+  <div class="closing__art absolute inset-0 -z-10 will-change-transform" data-parallax="-0.1" aria-hidden="true">
+    <img src="/assets/env-altar-night.jpg" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="closing__scrim absolute inset-0 -z-10" aria-hidden="true"></div>
+
+  <div class="closing__body relative" style="padding:var(--section-pad) var(--gutter)">
+    <p class="closing__kicker" data-reveal>Kabut akan menjawab</p>
+    <h2 class="closing__title" data-reveal style="--reveal-delay:.1s">Segera di <em>bioskop</em></h2>
+    <p class="closing__sub" data-reveal style="--reveal-delay:.2s">Daftarkan alamat surelmu. Satu pesan sebelum pemutaran perdana, tidak lebih. Gunung tidak suka spam.</p>
+
+    <form class="signup" id="signupForm" data-reveal style="--reveal-delay:.3s">
+      <label class="sr-only" for="signupEmail">Alamat surel</label>
+      <input id="signupEmail" name="email" type="email" required placeholder="nama@surel.kamu" autocomplete="email">
+      <button type="submit">Kabari aku</button>
+    </form>
+    <p class="signup__done" id="signupDone" role="status" aria-live="polite" hidden>Tercatat. Kabut akan menemukanmu.</p>
+  </div>
+
+  <footer class="closing__credits" data-reveal style="--reveal-delay:.4s">
+    <span>Sutradara <b>A. Wirawati</b></span>
+    <span>Produser <b>Lembah Kabut Film</b></span>
+    <span>Tata suara <b>Studio Ganda Gong</b></span>
+    <span>Sinematografi <b>D. Anjasmara</b></span>
   </footer>
 </section>
 
+<script>
+  const form = document.getElementById('signupForm') as HTMLFormElement;
+  const done = document.getElementById('signupDone');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const email = (document.getElementById('signupEmail') as HTMLInputElement)?.value;
+    form.setAttribute('hidden', '');
+    if (done) {
+      done.textContent = `Tercatat untuk ${email}. Kabut akan menemukanmu.`;
+      done.removeAttribute('hidden');
+    }
+  });
+</script>
+
 <style>
-  .closing__mist{
-    background-image:url("/assets/mist-band.jpg");
-    background-size:cover; background-position:center 30%;
-    opacity:.28;
-    -webkit-mask-image:linear-gradient(transparent, rgba(0,0,0,.6) 45%, #000);
-            mask-image:linear-gradient(transparent, rgba(0,0,0,.6) 45%, #000);
+  .closing__art img{
+    width:100%; height:112%; object-fit:cover; object-position:center 40%;
+    opacity:.5;
   }
-  .closing__quote{
+  .closing__scrim{
+    background:
+      radial-gradient(ellipse at center 60%, transparent 0%, rgba(13,20,18,.72) 70%),
+      linear-gradient(rgba(13,20,18,.85), rgba(13,20,18,.35) 45%, rgba(13,20,18,.92));
+  }
+  .closing__kicker{
+    font-size:.8rem; letter-spacing:.32em; text-transform:uppercase;
+    color:var(--color-bronze); margin-bottom:1.6rem;
+  }
+  .closing__title{
     font-family:var(--font-display); font-weight:300;
-    font-size:clamp(2.6rem, 8vw, 7rem);
-    line-height:1.04; letter-spacing:-0.01em;
-    max-width:14ch; margin-inline:auto;
+    font-size:clamp(2.8rem, 9vw, 7.5rem); line-height:1.02; letter-spacing:-0.01em;
   }
-  .closing__quote .mark{ font-style:italic; color:var(--color-vermilion-hi) }
-  .closing__cap{
-    margin-top:2rem; color:var(--color-ink-dim);
-    font-size:clamp(1rem, 1.5vw, 1.2rem);
+  .closing__title em{ font-style:italic; color:var(--color-vermilion-hi) }
+  .closing__sub{
+    margin:1.8rem auto 0; max-width:44ch; color:var(--color-ink-dim);
   }
-  .closing__foot{
+  .signup{
+    margin:2.6rem auto 0; max-width:30rem;
+    display:flex; gap:0; align-items:stretch;
+    border-bottom:1.5px solid var(--color-mist);
+    transition:border-color .4s;
+  }
+  .signup:focus-within{ border-bottom-color:var(--color-vermilion-hi) }
+  .signup input{
+    flex:1; min-width:0; background:transparent; border:none; outline:none;
+    color:var(--color-ink); font-family:var(--font-body); font-size:1.1rem;
+    padding:.9rem .2rem;
+  }
+  .signup input::placeholder{ color:var(--color-ink-dim) }
+  .signup button{
+    background:transparent; border:none; cursor:pointer;
+    color:var(--color-vermilion-hi);
+    font-family:var(--font-display); font-style:italic; font-size:1.1rem;
+    letter-spacing:.02em; padding:.9rem 0 .9rem 1.2rem;
+    transition:letter-spacing .4s;
+  }
+  .signup button:hover{ letter-spacing:.08em }
+  .signup__done{
+    margin:2.6rem auto 0; font-family:var(--font-display); font-style:italic;
+    font-size:1.3rem; color:var(--color-sage);
+  }
+  .closing__credits{
     position:absolute; bottom:0; left:0; right:0;
     padding:2rem var(--gutter);
-    font-size:.82rem; letter-spacing:.18em; text-transform:uppercase;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem 2.4rem;
+    font-size:.78rem; letter-spacing:.16em; text-transform:uppercase;
     color:var(--color-ink-dim);
   }
-  .closing__foot a{ color:var(--color-vermilion-hi); text-decoration:none }
-  .closing__foot a:hover{ text-decoration:underline; text-underline-offset:4px }
+  .closing__credits b{ font-weight:500; color:var(--color-mist); margin-left:.5em }
+  .sr-only{
+    position:absolute; width:1px; height:1px; overflow:hidden;
+    clip:rect(0 0 0 0); white-space:nowrap;
+  }
 </style>
